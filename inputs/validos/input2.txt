@@ -1,0 +1,26 @@
+cultivo tomate;
+cultivo lechuga;
+cultivo albahaca;
+
+tarea revision_diaria() {
+    si tomate < 3:
+        regar tomate;
+    sino:
+        abonar tomate;
+
+    si lechuga == 0:
+        regar lechuga;
+
+    si albahaca > 2:
+        podar albahaca;
+}
+
+tarea cuidado_semanal() {
+    revision_diaria();
+    esperar 7 dias;
+    abonar albahaca;
+}
+
+tarea main() {
+    cuidado_semanal();
+}

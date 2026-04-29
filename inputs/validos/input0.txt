@@ -1,0 +1,32 @@
+cultivo tomate;
+cultivo lechuga;
+cultivo albahaca;
+
+tarea regar_plantas() {
+    si tomate < 3:
+        regar tomate;
+    sino:
+        abonar tomate;
+        
+    si lechuga == 0:
+        regar lechuga;
+
+    si albahaca > 2:
+        podar albahaca
+}
+
+tarea cuidado_semanal() {
+    regar_plantas();
+    esperar 7 dias;
+    podar albahaca;
+}
+
+tarea mantenimiento() {
+    podar tomate;
+    podar lechuga;
+}
+
+tarea main() {
+    cuidado_semanal();
+    mantenimiento();
+}

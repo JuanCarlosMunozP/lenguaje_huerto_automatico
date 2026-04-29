@@ -1,0 +1,6 @@
+cultivo tomate;
+
+tarea main() {
+    si papa < 3:
+        regar tomate;
+}

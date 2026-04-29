@@ -1,0 +1,11 @@
+cultivo tomate;
+cultivo lechuga;
+
+tarea riego() {
+    si tomate < 3:
+        regar tomate;
+}
+
+tarea main() {
+    riego();
+}
