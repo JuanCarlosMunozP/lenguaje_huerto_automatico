@@ -1,7 +1,9 @@
 from antlr4 import * 
-from gen.HuertoLexer import HuertoLexer 
-from gen.HuertoParser import HuertoParser
-from visitor import HuertoCustomVisitor
+from generated.HuertoLexer import HuertoLexer 
+from generated.HuertoParser import HuertoParser
+
+from semantic_analyzer.visitor import HuertoCustomVisitor
+from codegen.generator import generar_codigo
 import sys
 import os
 
@@ -38,19 +40,7 @@ def main():
         if not visitor.hay_main:
             raise Exception("Error no semántico: no se encontró la tarea obligatoria 'main()'")
 
-        codigo_final = ""
-
-        if visitor.usar_time: 
-            codigo_final += "import time\n\n"
-
-        codigo_final += visitor.codigo
-        codigo_final += "\nmain()\n"
-
-        print("\n--- CODIGO GENERADO ---\n")
-        print(codigo_final)
-
-        with open("output.py","w") as f:
-            f.write(codigo_final)
+        codigo_final = generar_codigo(visitor)
 
     except Exception as e:
         print("\n ERROR DETECTADO: \n")

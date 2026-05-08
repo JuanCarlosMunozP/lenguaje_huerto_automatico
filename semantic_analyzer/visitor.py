@@ -1,7 +1,7 @@
 from antlr4 import *
-from gen.HuertoLexer import HuertoLexer
-from gen.HuertoParser import HuertoParser
-from gen.HuertoVisitor import HuertoVisitor
+from generated.HuertoLexer import HuertoLexer
+from generated.HuertoParser import HuertoParser
+from generated.HuertoVisitor import HuertoVisitor
 
 class HuertoCustomVisitor(HuertoVisitor):
 
