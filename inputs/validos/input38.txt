@@ -1,0 +1,13 @@
+cultivo tomate;
+
+tarea simple() {
+    regar tomate;
+}
+
+tarea principal() {
+    simple();
+}
+
+tarea main() {
+    principal();
+}

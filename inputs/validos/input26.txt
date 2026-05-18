@@ -1,0 +1,10 @@
+cultivo zanahoria;
+
+tarea proceso() {
+    esperar 1 dias;
+    podar zanahoria;
+}
+
+tarea main() {
+    proceso();
+}

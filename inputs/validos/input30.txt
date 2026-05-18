@@ -1,0 +1,12 @@
+cultivo tomate;
+
+tarea clima() {
+    si tomate > 20:
+        podar tomate;
+    sino:
+        abonar tomate;
+}
+
+tarea main() {
+    clima();
+}

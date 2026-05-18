@@ -1,0 +1,10 @@
+cultivo pepino;
+
+tarea cuidado() {
+    regar pepino;
+    abonar pepino;
+}
+
+tarea main() {
+    cuidado();
+}

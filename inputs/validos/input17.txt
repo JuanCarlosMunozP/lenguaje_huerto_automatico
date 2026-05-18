@@ -1,0 +1,10 @@
+cultivo tomate;
+
+tarea semanal() {
+    esperar 7 dias;
+    regar tomate;
+}
+
+tarea main() {
+    semanal();
+}

@@ -1,0 +1,5 @@
+cultivo tomate;
+
+tarea main( {
+    regar tomate;
+}

@@ -1,0 +1,12 @@
+cultivo tomate;
+
+tarea control() {
+    si tomate > 5:
+        abonar tomate;
+    sino:
+        regar tomate;
+}
+
+tarea main() {
+    control();
+}

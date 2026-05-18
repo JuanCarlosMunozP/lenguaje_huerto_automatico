@@ -1,0 +1,5 @@
+cultivo cebolla;
+
+tarea () {
+    regar cebolla;
+}

@@ -1,0 +1,5 @@
+cultivo zanahoria;
+
+tarea main() {
+    fertilizar();
+}

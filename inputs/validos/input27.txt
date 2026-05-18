@@ -1,0 +1,12 @@
+cultivo tomate;
+cultivo papa;
+
+tarea cultivo_total() {
+    regar tomate;
+    abonar papa;
+    podar tomate;
+}
+
+tarea main() {
+    cultivo_total();
+}

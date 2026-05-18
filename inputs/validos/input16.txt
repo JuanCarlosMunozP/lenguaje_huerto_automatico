@@ -1,0 +1,11 @@
+cultivo tomate;
+cultivo zanahoria;
+
+tarea fertilizar() {
+    abonar tomate;
+    abonar zanahoria;
+}
+
+tarea main() {
+    fertilizar();
+}

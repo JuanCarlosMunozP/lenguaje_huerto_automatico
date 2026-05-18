@@ -1,0 +1,6 @@
+cultivo berenjena;
+
+tarea main() {
+    si berenjena >:
+        podar berenjena;
+}

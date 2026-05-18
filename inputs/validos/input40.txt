@@ -1,0 +1,17 @@
+cultivo tomate;
+
+tarea cadena1() {
+    regar tomate;
+}
+
+tarea cadena2() {
+    cadena1();
+}
+
+tarea cadena3() {
+    cadena2();
+}
+
+tarea main() {
+    cadena3();
+}

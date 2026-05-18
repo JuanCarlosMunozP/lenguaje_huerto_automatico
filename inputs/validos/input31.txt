@@ -1,0 +1,13 @@
+cultivo tomate;
+cultivo cebolla;
+cultivo albahaca;
+
+tarea huerto() {
+    regar tomate;
+    regar cebolla;
+    regar albahaca;
+}
+
+tarea main() {
+    huerto();
+}

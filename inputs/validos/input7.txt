@@ -1,0 +1,9 @@
+cultivo tomate;
+
+tarea cuidado() {
+    abonar tomate;
+}
+
+tarea main() {
+    cuidado();
+}

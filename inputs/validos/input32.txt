@@ -1,0 +1,10 @@
+cultivo tomate;
+
+tarea fertilizar() {
+    abonar tomate;
+    esperar 4 dias;
+}
+
+tarea main() {
+    fertilizar();
+}

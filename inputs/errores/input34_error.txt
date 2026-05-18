@@ -1,0 +1,6 @@
+cultivo pepino;
+
+tarea main() {
+    si < 5:
+        regar pepino;
+}

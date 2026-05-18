@@ -1,0 +1,9 @@
+cultivo cebolla;
+
+tarea mantenimiento() {
+    podar cebolla;
+}
+
+tarea main() {
+    mantenimiento();
+}

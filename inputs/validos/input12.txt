@@ -1,0 +1,11 @@
+cultivo tomate;
+cultivo lechuga;
+
+tarea cuidado() {
+    regar tomate;
+    regar lechuga;
+}
+
+tarea main() {
+    cuidado();
+}

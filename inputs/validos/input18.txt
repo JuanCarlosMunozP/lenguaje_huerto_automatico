@@ -1,0 +1,13 @@
+cultivo tomate;
+cultivo lechuga;
+cultivo albahaca;
+
+tarea huerto() {
+    regar tomate;
+    podar albahaca;
+    abonar lechuga;
+}
+
+tarea main() {
+    huerto();
+}

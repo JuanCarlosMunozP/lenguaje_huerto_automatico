@@ -1,0 +1,14 @@
+cultivo tomate;
+cultivo lechuga;
+
+tarea control() {
+    si tomate == 0:
+        regar tomate;
+
+    si lechuga < 5:
+        abonar lechuga;
+}
+
+tarea main() {
+    control();
+}

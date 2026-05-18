@@ -1,0 +1,15 @@
+cultivo tomate;
+cultivo albahaca;
+
+tarea revision() {
+    si tomate > 3:
+        podar tomate;
+    sino:
+        regar tomate;
+
+    abonar albahaca;
+}
+
+tarea main() {
+    revision();
+}

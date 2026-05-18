@@ -1,0 +1,9 @@
+cultivo tomate;
+
+tarea poda() {
+    podar tomate;
+}
+
+tarea main() {
+    poda();
+}

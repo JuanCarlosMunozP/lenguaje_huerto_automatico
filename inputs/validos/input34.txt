@@ -1,0 +1,14 @@
+cultivo tomate;
+
+tarea tarea1() {
+    regar tomate;
+}
+
+tarea tarea2() {
+    tarea1();
+    podar tomate;
+}
+
+tarea main() {
+    tarea2();
+}

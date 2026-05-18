@@ -1,0 +1,17 @@
+cultivo tomate;
+cultivo lechuga;
+
+tarea diaria() {
+    regar tomate;
+    esperar 2 dias;
+    podar lechuga;
+}
+
+tarea semanal() {
+    diaria();
+    abonar tomate;
+}
+
+tarea main() {
+    semanal();
+}

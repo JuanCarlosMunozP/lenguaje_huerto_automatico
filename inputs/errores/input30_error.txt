@@ -1,0 +1,5 @@
+cultivo albahaca;
+
+tarea main() {
+    esperar 0 dias
+}

@@ -1,0 +1,5 @@
+cultivo pepino;
+
+principal() {
+    regar pepino;
+}

@@ -1,0 +1,5 @@
+cultivo remolacha;
+
+tarea main() {
+    esperar dias;
+}

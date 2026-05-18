@@ -1,0 +1,10 @@
+cultivo tomate;
+
+tarea clima() {
+    si tomate < 8:
+        regar tomate;
+}
+
+tarea main() {
+    clima();
+}

@@ -1,0 +1,11 @@
+cultivo tomate;
+cultivo albahaca;
+
+tarea mantenimiento() {
+    podar tomate;
+    abonar albahaca;
+}
+
+tarea main() {
+    mantenimiento();
+}

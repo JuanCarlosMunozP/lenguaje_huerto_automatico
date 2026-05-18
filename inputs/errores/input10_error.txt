@@ -1,0 +1,5 @@
+cultivo tomate;
+
+tarea main() {
+    esperar 0 dias;
+}

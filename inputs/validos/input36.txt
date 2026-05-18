@@ -1,0 +1,9 @@
+cultivo tomate;
+
+tarea espera() {
+    esperar 9 dias;
+}
+
+tarea main() {
+    espera();
+}

@@ -1,0 +1,6 @@
+cultivo espinaca;
+
+tarea main() {
+    si espinaca ==:
+        regar espinaca;
+}

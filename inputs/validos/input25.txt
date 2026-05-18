@@ -1,0 +1,12 @@
+cultivo tomate;
+cultivo lechuga;
+
+tarea riego() {
+    regar tomate;
+    esperar 3 dias;
+    regar lechuga;
+}
+
+tarea main() {
+    riego();
+}

@@ -56,9 +56,18 @@ class HuertoCustomVisitor(HuertoVisitor):
             return f"print('Podando {nombre}')"
 
     def visitEsperarAction(self,ctx):
-        dias = int(ctx.NUMBER().getText())
-        linea = ctx.start.line
-        columna = ctx.start.column
+
+        numero = ctx.NUMBER()
+
+        if numero is None:
+            linea = ctx.start.line
+            columna = ctx.start.column
+            raise Exception(
+                f"Error sintáctico (línea {linea}, columna {columna})"
+                f"la instrucción esperar requiere un número de días"
+            )
+
+        dias = int(numero.getText())
 
         if dias == 0:
             raise Exception(
@@ -82,7 +91,7 @@ class HuertoCustomVisitor(HuertoVisitor):
 
         if not nombre in self.cultivos:
             raise Exception(
-                f"Errror semántico (línea {linea}, columna {column}) "
+                f"Errror semántico (línea {linea}, columna {columna}) "
                 f"cultivo '{nombre}' no declarado antes de usarlo en 'regar'"
             )
         

@@ -1,0 +1,9 @@
+cultivo tomate;
+
+tarea riego() {
+    regar tomate;
+}
+
+tarea main() {
+    riego();
+}

@@ -1,0 +1,10 @@
+cultivo tomate;
+
+tarea revision() {
+    si tomate > 10:
+        podar tomate;
+}
+
+tarea main() {
+    revision();
+}

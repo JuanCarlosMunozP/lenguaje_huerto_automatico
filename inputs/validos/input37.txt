@@ -1,0 +1,12 @@
+cultivo tomate;
+cultivo pepino;
+
+tarea semanal() {
+    regar tomate;
+    podar pepino;
+    esperar 6 dias;
+}
+
+tarea main() {
+    semanal();
+}

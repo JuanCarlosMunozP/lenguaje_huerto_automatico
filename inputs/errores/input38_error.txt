@@ -1,0 +1,6 @@
+cultivo ajo;
+
+tarea main() {
+    regar ajo
+    abonar ajo;
+}
