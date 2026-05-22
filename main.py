@@ -6,6 +6,7 @@ from generated.HuertoParser import HuertoParser
 
 from semantic_analyzer.visitor import HuertoCustomVisitor
 from codegen.generator import generar_codigo
+from codegen.intermediate_code import generar_tac
 import sys
 import os
 
@@ -90,16 +91,23 @@ def main():
             21: "ESPACIO"
         }
 
+        contador_tokens = {}
+
         for i, token in enumerate(tokens,start=1):
 
             if token.type == -1:
                 continue
 
-            token_name = TOKENS.get(token.type, "TOKEN")                
+            token_name = TOKENS.get(token.type, "TOKEN")  
+            contador_tokens[token_name] = contador_tokens.get(token_name,0) + 1              
             print(f"{i:4}. {token_name:<20} '{token.text}'")
 
-        print("\n[OK] {len(tokens)} tokens generados correctamente.")
         
+        print("\n Resumen de tipos de token: \n")
+        
+        for nombre,cantidad in contador_tokens.items():
+
+            print(f"   - {nombre}: {cantidad}")
 
         # reiniciar Lexer/input
         
@@ -138,6 +146,10 @@ def main():
 
         visitor.visit(tree)
 
+        # ==========================================
+        # VALIDACIONES SEMANTICAS
+        # ==========================================
+
         for llamada in visitor.llamadas:
 
             if llamada not in visitor.tareas:
@@ -150,30 +162,128 @@ def main():
 
             raise Exception("Error no semántico: no se encontró la tarea obligatoria 'main()'")
 
-        print("\n Tabla de Cultivos: \n")
+        # ==========================================
+        # TABLA DE SIMBOLOS
+        # ==========================================
+
+        print("\n Definiciones registradas: \n")
+        
+        for cultivo in visitor.cultivos:
+            print(f"Definiendo cultivo '{cultivo}()' en el ámbito global")
+
+        for tarea in visitor.tareas:
+            print(f"Definiendo tarea '{tarea}()' en el ámbito global")
+
+        # ==========================================
+        # TABLA SEMANTICA
+        # ==========================================
+
+        print("\n Tabla de Simbolos \n")
+
+        print("Cultivos registrados:")
 
         for cultivo in visitor.cultivos:
             print(f"  - {cultivo}")
 
-        print("\n Tabla de tareas: \n")
+        print("\n Tareas registradas: \n")
 
         for tarea in visitor.tareas:
             print(f"  - {tarea}")
+
+        # ==========================================
+        # LLAMADAS ANALIZADAS
+        # ==========================================
+
+        print("\n Llamadas detectadas: \n")
+
+        if len(visitor.llamadas) == 0:
+
+            print(" (no se detectaron llamadas)")
         
-        print("\n[OK] analisis semantico completado.")
+        else:
+
+            for llamada in visitor.llamadas:
+
+                print(f"    - {llamada}()")
+        
+        # ==========================================
+        # RESUMEN SEMANTICO
+        # ==========================================
+
+        total_variables = len(visitor.cultivos)
+        total_tareas = len(visitor.tareas)
+        total_llamadas = len(visitor.llamadas)
+
+
+        print("\n Resumen semántico: \n")
+
+        print(f"  - Cultivos analizados: {total_variables}")
+        print(f"  - Tareas analizadas: {total_tareas}")
+        print(f"  - Llamadas analizadas: {total_llamadas}")
+
+        print(
+            f"\n[OK] Analisis semantico completado correctamente."
+        )
 
         # ====================================
-        # FASE 4: GENERACIÓN DE CODIGO
+        # FASE 4: GENERACION DE CODIGO INTERMEDIO
         # ====================================
 
-        print("\nFASE 4: GENERACION DE CODIGO")
+        print("\nFASE 4: GENERACION DE CODIGO INTERMEDIO: \n")
         print("------------------------------")
         
+        tac = generar_tac(visitor)
+
+        print("\n Codigo intermedio: \n")
+
+        for instruccion in tac:
+
+            print(f"  {instruccion}")
+
+        # ====================================
+        # ANALISIS TAC
+        # ====================================
+
+        print("\n Análisis de codigo intermedio: \n")
+
+        print(f"   - Total de Instrucciones: {len(tac)}")
+        print(f"   - Cultivos registrados: {len(visitor.cultivos)}")
+        print(f"   - Tareas registradas: {len(visitor.tareas)}")
+        print(f"    - Llamadas detectadas: {len(visitor.llamadas)}")
+
+        print(
+            f"\n[OK] Codigo intermedio generado: {len(tac)} instrucciones TAC."
+        )
+
+        # ====================================
+        # FASE 5: GENERACION DE CODIGO FINAL
+        # ====================================
+
+        print("\n FASE 5: GENERACION DE CODIGO FINAL: \n")
+        print("----------------------------------------")
+
+        print("\n[TARGET_1: PYTHON CODE]")
+
         codigo_final = generar_codigo(visitor)
 
-        print("\n Código Python generado: \n")
-
         print(codigo_final)
+
+        # ====================================
+        # ESTADISTICAS
+        # ====================================
+
+        lineas = codigo_final.split("\n")
+
+        lineas_codigo = [l for l in lineas if l.strip() != ""]
+
+        print("\n Estadisticas del codigo Python: \n")
+
+        print(f"        - Lineas totales: {len(lineas)}")
+        print(f"        - Lineas de codigo: {len(lineas_codigo)}")
+
+        # ====================================
+        # GUARDAR ARCHIVOS
+        # ====================================
 
         with open("output_program.py","w") as f:
 
@@ -182,7 +292,7 @@ def main():
 
         with open("output.txt","w") as f:
 
-            f.write("# FASE 4 GENERACIÓN DE CODIGO PYTHON\n")
+            f.write("# FASE 5 GENERACIÓN DE CODIGO FINAL\n")
             f.write("#----------------------------------------\n\n")
             f.write(codigo_final)
 
