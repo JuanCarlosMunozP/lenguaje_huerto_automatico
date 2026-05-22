@@ -1,4 +1,6 @@
 from antlr4 import * 
+from antlr4.tree.Tree import TerminalNodeImpl
+
 from generated.HuertoLexer import HuertoLexer 
 from generated.HuertoParser import HuertoParser
 
@@ -6,6 +8,33 @@ from semantic_analyzer.visitor import HuertoCustomVisitor
 from codegen.generator import generar_codigo
 import sys
 import os
+
+def imprimir_arbol(node,parser,indent=0):
+
+    espacio = "  " * indent 
+
+    if isinstance(node,TerminalNodeImpl):
+
+        print(f"{espacio}TerminalNodeImp: '{node.getText()}'")
+
+    else:
+
+        nombre_regla = type(node).__name__
+
+        texto = node.getText()
+
+        if len(texto):
+
+            texto = texto[:30] + "..."
+
+        print(f"{espacio}{nombre_regla}: '{texto}'")
+
+        for i in range(node.getChildCount()):
+
+            hijo = node.getChild(i)
+
+            imprimir_arbol(hijo, parser, indent + 1)
+
 
 def main():
 
@@ -37,17 +66,37 @@ def main():
 
         tokens = lexer.getAllTokens()
 
+        TOKENS = {
+            1: "CULTIVO",
+            2: "PUNTO_Y_COMA",
+            3: "TAREA",
+            4: "PARENTESIS_IZQ",
+            5: "PARENTESIS_DER",
+            6: "LLAVE_IZQ",
+            7: "LLAVE_DER",
+            8: "SI",
+            9: "DOS_PUNTOS",
+            10: "SINO",
+            11: "REGAR",
+            12: "ABONAR",
+            13: "PODAR",
+            14: "ESPERAR",
+            15: "DIAS",
+            16: "MENOR_QUE",
+            17: "MAYOR_QUE",
+            18: "IGUAL_IGUAL",
+            19: "IDENTIFICADOR",
+            20: "NUMERO",
+            21: "ESPACIO"
+        }
+
         for i, token in enumerate(tokens,start=1):
 
             if token.type == -1:
                 continue
 
-            if token.type < len(lexer.symbolicNames):
-                token_name = lexer.symbolicNames[token.type]
-            else:
-                token_name = "TOKEN"
-                
-            print(f"{i:4}. {token_name:<15} '{token.text}'")
+            token_name = TOKENS.get(token.type, "TOKEN")                
+            print(f"{i:4}. {token_name:<20} '{token.text}'")
 
         print("\n[OK] {len(tokens)} tokens generados correctamente.")
         
@@ -73,7 +122,7 @@ def main():
 
         print("\nParse Tree:\n")
 
-        print(tree.toStringTree(recog=parser))
+        imprimir_arbol(tree,parser)
         
         print("\n[OK] Analisis sintatico completado.")
 

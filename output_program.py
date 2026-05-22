@@ -1,16 +1,13 @@
 # === CODIGO GENERADO ===
 
 tomate = 0
-albahaca = 0
+lechuga = 0
 
-def revision(): 
-    if tomate > 3: 
-        print('Podando tomate')
-    else:
+def riego(): 
+    if tomate < 3: 
         print('Regando tomate')
-    print('Abonando albahaca ')
 
 def main(): 
-    revision()
+    riego()
 
 main()
